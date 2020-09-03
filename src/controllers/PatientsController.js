@@ -14,7 +14,9 @@ module.exports = {
 
 	async show(request, response) {
 		try {
-			const patient = await connection('patients');
+			const { id } = request.params;
+
+			const patient = await connection('patients').where({ id });
 
 			return response.json(patient);
 		} catch(err) {
